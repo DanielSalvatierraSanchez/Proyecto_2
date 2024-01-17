@@ -135,7 +135,7 @@ p {
   height: 30px;
 }
 
-.button-search {
+.button-search-price {
   margin: var(--gr-margin-s);
   margin-top: 1px;
   height: 50px;
@@ -143,12 +143,12 @@ p {
   background-color: var(--gr-background-gri);
 }
 
-.button-search:hover {
+.button-search-price:hover {
   background-color: var(--gr-background-gre);
   cursor: pointer;
 }
 
-.button-clean {
+.button-clear {
   margin: var(--gr-margin-s);
   margin-top: 100px;
   height: 50px;
@@ -156,7 +156,7 @@ p {
   background-color: var(--gr-background-gre);
 }
 
-.button-clean:hover {
+.button-clear:hover {
   background-color: var(--gr-color-re);
   cursor: pointer;
 }
@@ -169,6 +169,7 @@ p {
 /*  FINALIZAMOS CON MEDIA QUERIES  */
 
 @media (max-width: 2000px) {
+
   .products {
     background-color: var(--gr-background-gri);
     box-shadow: 0px 0px 10px 5px var(--gr-background-gr2);
@@ -181,6 +182,7 @@ p {
 }
 
 @media (max-width: 1555px) {
+
   .products {
     background-color: var(--gr-background-gri);
     box-shadow: 0px 0px 10px 5px var(--gr-background-gr2);
@@ -193,6 +195,7 @@ p {
 }
 
 @media (max-width: 1310px) {
+
   .products {
     background-color: var(--gr-background-gri);
     box-shadow: 0px 0px 10px 5px var(--gr-background-gr2);
@@ -205,6 +208,7 @@ p {
 }
 
 @media (max-width: 1060px) {
+  
   .products {
     background-color: var(--gr-background-gri);
     box-shadow: 0px 0px 10px 5px var(--gr-background-gr2);
@@ -217,6 +221,7 @@ p {
 }
 
 @media (max-width: 810px) {
+
   body {
     display: flex;
     flex-wrap: wrap;
@@ -273,14 +278,14 @@ p {
     height: 30px;
   }
   
-  .button-search {
+  .button-search-price {
     margin: var(--gr-margin-m);
     height: 50px;
     border-radius: var(--gr-border-s);
     background-color: var(--gr-background-gri);
   }
 
-  .button-clean {
+  .button-clear {
     margin: var(--gr-margin-m);
     margin-top: var(--gr-margin-xs);
     height: 50px;
@@ -290,6 +295,7 @@ p {
 }
 
 @media (max-width: 590px) {
+
   body {
     display: inline;
     grid-template-columns: repeat(2, 1fr);
@@ -300,10 +306,10 @@ p {
     background-color: transparent;
     box-shadow: none;
     display: flex;
-    flex-direction: column;
-    margin: var(--gr-margin-s);
+    flex-direction: row;
+    margin: var(--gr-margin-m);
     padding: var(--gr-padding-xs);
-    justify-content: space-between;
+    justify-content: start;
   }
 
   .products {
@@ -328,119 +334,175 @@ p {
 
   .h3-seller {
     color: var(--gr-color-gre);
-    margin-top: 10px;
+    margin-top: 5px;
     cursor: not-allowed;
     text-align: left;
   }
   
   .seller-filter {
-    margin: 10px 5px;
-    width: 150px;
-    height: 25px;
+    background-color: var(--gr-background-gri);
+    margin: 15px 5px;
+    width: 180px;
+    height: 20px;
     cursor: pointer;
   }
   
   .h3-price {
     color: var(--gr-color-gre);
-    cursor: not-allowed;
     margin-top: 10px;
+    cursor: not-allowed;
     text-align: left;
   }
   
   .price-filter {
-    background-color: white;
-    margin: 10px 5px;
-    width: 100px;
+    background-color: var(--gr-background-gri);
+    margin: 15px 5px;
+    width: 70px;
     height: 25px;
   }
   
-  .button-search {
+  .button-search-price {
     /* position: relative; */
-    margin: 20px 0px;
-    height: 50px;
-    width: 75px;
+    margin: 10px 25px;
+    height: 40px;
+    width: 85px;
     border-radius: var(--gr-border-s);
     background-color: var(--gr-background-gri);
   }
 
-  .button-clean {
-    margin: 10px 0px;
-    height: 50px;
-    width: 75px;
+  .button-clear {
+    margin: 10px 10px;
+    height: 40px;
+    width: 460px;
     border-radius: var(--gr-border-s);
     background-color: var(--gr-background-gre);
   }
 }
 
-@media (max-width: 495px) {
+@media (max-width: 480px) {
+ 
   .filter {
     background-color: transparent;
     box-shadow: none;
     display: flex;
-    flex-direction: column;
-    margin: 0px;
-  }
-
-  .products {
-    background-color: transparent;
-    box-shadow: none;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    padding: 0px;
-    margin: 20px 20px;
-    justify-content: space-between
+    flex-direction: row;
+    margin: var(--gr-margin-xs);
+    padding: var(--gr-padding-xs);
+    justify-content: start;
   }
 
   .games-card {
     display: flex;
     flex-direction: column;
-    align-content: center;
+    justify-content: center;
     background-color: var(--gr-background-bl);
     border-radius: var(--gr-border-xs);
-    padding: var(--gr-padding-s);
-    max-width: 175px;
+    margin: 10px;
+    padding: var(--gr-padding-xs);
+    max-width: 165px;
   }
 
   .h3-seller {
     color: var(--gr-color-gre);
-    margin-top: 10px;
+    margin-top: 5px;
     cursor: not-allowed;
     text-align: left;
+    font-size: 15px;
   }
   
   .seller-filter {
-    margin: 30px 5px;
-    width: 150px;
-    height: 25px;
+    background-color: var(--gr-background-gri);
+    margin: 15px 0px;
+    width: 100px;
+    height: 20px;
     cursor: pointer;
   }
   
   .h3-price {
     color: var(--gr-color-gre);
-    cursor: not-allowed;
     margin-top: 10px;
+    cursor: not-allowed;
     text-align: left;
+    font-size: 15px;
   }
   
   .price-filter {
-    background-color: white;
-    margin: 30px 5px;
-    width: 100px;
+    background-color: var(--gr-background-gri);
+    margin: 10px 10px;
+    width: 60px;
     height: 25px;
   }
-
-  .button-search {
-    margin: 25px -20px;
-    height: 50px;
-    width: 75px;
+  
+  .button-search-price {
+    /* position: relative; */
+    margin: 5px 15px;
+    height: 35px;
+    width: 50px;
     border-radius: var(--gr-border-s);
     background-color: var(--gr-background-gri);
   }
 
-  .button-clean {
-    margin: 10px -20px;
-    height: 50px;
-    width: 75px;
+  .button-clear {
+    margin: 0px 30px;
+    height: 40px;
+    width: 400px;
+    border-radius: var(--gr-border-s);
+    background-color: var(--gr-background-gre);
+  }
+}
+
+@media (max-width: 414px) {
+
+  .filter {
+    background-color: transparent;
+    box-shadow: none;
+    display: flex;
+    flex-direction: row;
+    margin: var(--gr-margin-xs);
+    padding: var(--gr-padding-xs);
+    justify-content: start;
+  }
+
+  .games-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--gr-background-bl);
+    border-radius: var(--gr-border-xs);
+    margin: 10px;
+    padding: var(--gr-padding-xs);
+    max-width: 145px;
+  }
+
+  .h3-seller {
+    color: var(--gr-color-gre);
+    margin-top: 5px;
+    cursor: not-allowed;
+    text-align: left;
+    font-size: 15px;
+  }
+  
+  .seller-filter {
+    background-color: var(--gr-background-gri);
+    margin: 10px 0px;
+    width: 80px;
+    height: 20px;
+    cursor: pointer;
+  }
+  
+  .button-search-price {
+    /* position: relative; */
+    margin: 5px 15px 10px 15px;
+    height: 30px;
+    width: 350px;
+    border-radius: var(--gr-border-s);
+    background-color: var(--gr-background-gri);
+  }
+
+  .button-clear {
+    margin: 5px 20px;
+    height: 40px;
+    width: 300px;
     border-radius: var(--gr-border-s);
     background-color: var(--gr-background-gre);
   }

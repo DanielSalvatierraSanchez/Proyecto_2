@@ -82,11 +82,11 @@ const games = [
   // puedes cambiar los campos de cada objeto si es necesario para tu diseño...
 ]
 
-/* CREAR LAS 2 SECCIONES */
+// asignar VAR a las 2 SECTION usando el selector QUERYSELECTOR para seleccionar la CLASS= del elemento SECTION
 const gamesContainer = document.querySelector('.products')
 const filtersContainer = document.querySelector('.filter')
 
-/* CREAR LAS CARTAS DE PRODUCTOS E INSERTARLAS */
+// crear los DIV de los productos, darle CLASS=GAMES-CARD y propiedades, pintarlos dentro de GAMESCONTAINER
 games.forEach((game) => {
   const gamesCard = document.createElement('div')
   gamesCard.className = 'games-card'
@@ -101,59 +101,46 @@ games.forEach((game) => {
   gamesContainer.appendChild(gamesCard)
 })
 
-/* CREAR PRIMER FILTRO */
+// crear primer filtro FIRSTFILTER , darle CLASS=SELLER-FILTER y su H3, pintarlos dentro de FILTERSCONTAINER
 const h3Seller = document.createElement('h3')
 h3Seller.className = 'h3-seller'
-h3Seller.innerHTML = 'SELECCIONA UN VENDEDOR'
+h3Seller.innerText = 'SELECCIONA UN VENDEDOR'
 filtersContainer.appendChild(h3Seller)
+
 const firstFilter = document.createElement('select')
 firstFilter.className = 'seller-filter'
 filtersContainer.appendChild(firstFilter)
 
-/* 4️⃣ Añadiría una opción en el select que sea TODAS. */
-const allOptions = document.createElement('option')
-allOptions.className = 'games-card'
-allOptions.innerHTML = 'TODOS'
-firstFilter.appendChild(allOptions)
+// 4️⃣ Añadiría una opción en el select que sea TODAS. añadir OPTION CLASS=ALL-SELLERS y pintarlos en CLASS=FIRSTFILTER
+const OptionAllSellers = document.createElement('option')
+OptionAllSellers.className = 'all-sellers'
+OptionAllSellers.innerText = 'TODOS'
+firstFilter.appendChild(OptionAllSellers)
 
-/* HACER BUCLE DE SELLERS, CREAR VAR DE LAS OPCIONES DEL FILTRO E INSERTAR LOS SELLERS SIN REPETIR  */
-const noRepeatSellers = [];
+// crear VAR, un array NOREPEATSELLERS para poner los SELLERS y que no los repita
+const noRepeatSellers = []
 for (const game of games) {
   if (!noRepeatSellers.includes(game.seller)) {
     noRepeatSellers.push(game.seller)
-};
+  }
 }
 
 for (const noRepeatSeller of noRepeatSellers) {
-  const optionSeller = document.createElement('option')
-  optionSeller.innerHTML = noRepeatSeller
-  firstFilter.appendChild(optionSeller)
+  const optionSellers = document.createElement('option')
+  optionSellers.innerHTML = noRepeatSeller
+  firstFilter.appendChild(optionSellers)
 }
 
-/* AÑADIR addEventListener AL FILTRO PARA QUE CAMBIE "change",
-1- VAR PARA SELECCIONAR SELLER (VALOR DEL FILTRO)
-2- VAR FILTRAR SELECCION DE JUEGOS (tal vez algo complejo)
-3- AL SELECCIONAR SELLER VACIA TODOS Y DESPUES...
-4- FOREACH CREANDO VAR PARA QUE AÑADA UN DIV EXACTAMENTE IGUAL PERO SOLO CON EL VALOR DEL SELLER DE LA VAR ANTERIOR */
+// añadir ADDEVENTLISTENER al FIRSTFILTER para que haga "change", crear VAR que SELECTSELLER que contenga los valores del FIRSTFILTER para ello:
+// 1- creamos una VAR FILTERSELECTGAMES para que del array GAMES filtre con un ( () => vendedor === sea la VAR de SELECTSELLER )
+// 2- gamesContainer.innerHTML = '' indicamos que vacie GAMECONTAINER al seleccionar un SELLER ademas de vaciar el INPUT de INPUTOFPRICE (precio)
+// 3- FOREACH para pintar los DIV de los GAMES
 
- firstFilter.addEventListener('change', function () {
+firstFilter.addEventListener('change', () => {
   const selectSeller = firstFilter.value
   const filterSelectGames = games.filter((game) => game.seller === selectSeller)
   gamesContainer.innerHTML = ''
-
-  if (selectSeller === 'TODOS') {
-    showAllGames();
-    return;
-  }
-
-  // 2️⃣ En caso de que realice la búsqueda en el input numérico por un valor muy bajo, que salga un mensaje de "No se han encontrado resultados"
-  
-  if (priceUser < 19.95) {
-    const noResults = document.createElement('h3')
-    noResults.className = 'no-results'
-    noResults.innerHTML = 'No se han encontrado resultados'
-    gamesContainer.appendChild(noResults)
-  }
+  inputOfPrice.value = ''
 
   filterSelectGames.forEach((game) => {
     const gameInfo = document.createElement('div')
@@ -168,43 +155,55 @@ for (const noRepeatSeller of noRepeatSellers) {
     `
     gamesContainer.appendChild(gameInfo)
   })
+
+  if (selectSeller === 'TODOS') {
+    // si selecciona 'TODOS' pinta todos los productos
+    showAllGames()
+  }
 })
 
-/* CREAR SEGUNDO FILTRO
-- INPUT con class y type Y BUTTON con class, text y type */
+// crear segundo filtro SECONDFILTER , darle CLASS=PRICE-FILTER y su H3, pintarlos dentro de FILTERSCONTAINER
+// H3 con CLASS=H3-PRICE , INPUT SECONDFILTER con CLASS=PRICE-FILTER y BUTTON con CLASS=BUTTON-SEARCH-PRICE
 const h3Price = document.createElement('h3')
 h3Price.className = 'h3-price'
-h3Price.innerHTML = 'BUSQUEDA POR PRECIO'
-filtersContainer.appendChild(h3Price)
+h3Price.innerText = 'BUSQUEDA POR PRECIO'
 
 const secondFilter = document.createElement('input')
 secondFilter.className = 'price-filter'
 secondFilter.type = 'number'
 secondFilter.min = 1
 
-const buttonSearch = document.createElement('button')
-buttonSearch.className = 'button-search'
-buttonSearch.textContent = 'Buscar'
-buttonSearch.type = 'submit'
+const buttonSearchPrice = document.createElement('button')
+buttonSearchPrice.className = 'button-search-price'
+buttonSearchPrice.innerText = 'Buscar'
+buttonSearchPrice.type = 'submit'
 
-/* INSERTAMOS INPUT Y BUTTON */
+filtersContainer.appendChild(h3Price)
 filtersContainer.appendChild(secondFilter)
-filtersContainer.appendChild(buttonSearch)
+filtersContainer.appendChild(buttonSearchPrice)
 
-/* SELECCIONAMOS CLASS PARA LUEGO ASIGNARLES VAR */
+// asignar VAR al INPUT y al BUTTON usando el selector QUERYSELECTOR para seleccionar la CLASS= del elemento INPUT Y BUTTON
 const inputOfPrice = document.querySelector('.price-filter')
-const buttonOfSearch = document.querySelector('.button-search')
+const buttonOfSearchPrice = document.querySelector('.button-search-price')
 
-/* AÑADIR addEventListener AL BUTTON PARA QUE AL HACER "click":
-1- VAR PARA SELECCIONAR PRECIO DEL USER (VALOR DEL INPUT)
-2- VAR FILTRAR POR PRECIO CON < PARA SER INFERIOR AL VALOR DEL PRICE
-3- AL SELECCIONAR SELLER VACIA TODOS Y DESPUES...
-4- FOREACH CREANDO VAR PARA QUE AÑADA UN DIV EXACTAMENTE IGUAL PERO SOLO CON EL VALOR DEL PRICE DE LA VAR ANTERIOR */
+// añadir ADDEVENTLISTENER al BUTTON para que al hacer "click"... cree una VAR que PRICEOFUSER que contenga el valor del INPUT para ello:
+// 1- creamos una VAR FILTERFORPRICE para que del array GAMES filtre (() => el precio que sea < inferior al precio que se inserte en el INPUT PRICEOFUSER )
+// 2- gamesContainer.innerHTML = '' indicamos que vacie GAMECONTAINER al hacer CLICK en el BUTTON ademas de vaciar el SELECT de FIRSTFILTER (vendedores)
+// 3- FOREACH para pintar los DIV de los GAMES pero solo los que coincidan con el valor del INPUT introducido en INPUTOFPRICE
 
- buttonSearch.addEventListener('click', function () {
-  const priceUser = inputOfPrice.value
-  const filterForPrice = games.filter((game) => game.price < priceUser)
+buttonOfSearchPrice.addEventListener('click', () => {
+  const priceOfUser = inputOfPrice.value
+  const filterForPrice = games.filter((game) => game.price < priceOfUser)
   gamesContainer.innerHTML = ''
+  firstFilter.value = ''
+
+  // 2️⃣ En caso de que realice la búsqueda en el input numérico por un valor muy bajo, que salga un mensaje de "No se han encontrado resultados"
+  if (priceOfUser < 19.95) {
+    const noResults = document.createElement('h3')
+    noResults.className = 'no-results'
+    noResults.innerHTML = 'No se han encontrado resultados'
+    gamesContainer.appendChild(noResults)
+  }
 
   filterForPrice.forEach((game) => {
     const priceInfo = document.createElement('div')
@@ -219,25 +218,25 @@ const buttonOfSearch = document.querySelector('.button-search')
     `
     gamesContainer.appendChild(priceInfo)
   })
-})  
+})
 
-/* CREAR BUTTON LIMPIAR FILTROS CON class, text y type Y PINTARLO */
-const buttonClean = document.createElement('button')
-buttonClean.className = 'button-clean'
-buttonClean.textContent = 'Limpiar Filtros'
-filtersContainer.appendChild(buttonClean)
+// crear BUTTON 'Limpiar Filtros' con CLASS=BUTTON-CLEAR y pintarlo en FILTERCONTAINER
+const buttonClearFilters = document.createElement('button')
+buttonClearFilters.className = 'button-clear'
+buttonClearFilters.innerText = 'Limpiar Filtros'
+filtersContainer.appendChild(buttonClearFilters)
 
-/* CREAR EVENTO AL HACER CLICK, NUEVOS FILTROS */
-/* 3️⃣ Al darle a limpiar filtros, resetea bien el listado pero que limpie el valor del input y del select. */
-buttonClean.addEventListener('click', () => {
+/* crear ADDEVENTLISTENER del BUTTON 'Limpiar Filtros' que al hacer CLICK limpie los filtros y pinte todos los GAMES */
+/* 3️⃣ Al darle a 'Limpiar Filtros' , resetea bien el listado pero que limpie el valor del input y del select. */
+buttonClearFilters.addEventListener('click', () => {
   firstFilter.value = ''
   secondFilter.value = ''
   showAllGames()
 })
 
-/* CREAR FUNCION PARA MOSTRAR ELEMENTOS, CREAR BUCLE COMO ANTERIORES Y PINTAR VAR */
+// crear function para pintar todos los GAMES, crear bucle igual que los anteriores y pintarlos
 function showAllGames() {
-  gamesContainer.innerHTML = ''
+  gamesContainer.innerHTML = '' // evita que se repitan infinitamente todos los GAMES cada vez que pulsemos el BUTTON 'Limpiar Filtros'
 
   games.forEach((game) => {
     const allGames = document.createElement('div')
@@ -253,37 +252,23 @@ function showAllGames() {
     gamesContainer.appendChild(allGames)
   })
 }
-showAllGames()
 
-// 1️⃣ BONUS: Realizar los dos filtros de manera conjunta. Esto se conseguiría añadiendo las dos funciones dentro de la misma. Es decir, que al filtrar por select y por input, solo salgan artículos que cumplan con los dos filtros. DEJO COMENTADOS // LAS function DE AMBOS FILTROS PARA EVITAR PROBLEMAS.
-filtersContainer.addEventListener('change', function () {
+// 1️⃣ BONUS: Realizar los dos filtros de manera conjunta. Esto se conseguiría añadiendo las dos funciones dentro de la misma. Es decir, que al filtrar por select y por input, solo salgan artículos que cumplan con los dos filtros. // NO CONSIGO HACER FUNCIONAR LOS 2 FILTROS A LA VEZ, LE DARE UNA VUELTA MAS ADELANTE
+
+/*
+filtersContainer.addEventListener('change', () => {
   const selectSeller = firstFilter.value
-  const priceUser = inputOfPrice.value
+  const priceOfUser = inputOfPrice.value
 
-  const twoFilters = games.filter((game) => {
-    const sellers = game.seller === selectSeller
-    const prices = game.price <= priceUser
-    return sellers && prices
+  const twoFiltersTogether = games.filter((game) => {
+    const filterOfSellersTogether = game.seller === selectSeller
+    const filterOfPricesTogether = game.price < priceOfUser
+    return filterOfSellersTogether && filterOfPricesTogether
   })
   gamesContainer.innerHTML = ''
 
-  // AL SELECCIONAR 'TODOS' MUESTRA TODOS LOS VENDEDORES
-  if (selectSeller === 'TODOS') {
-    showAllGames();
-    return;
-  }
-
-  // 2️⃣ En caso de que realice la búsqueda en el input numérico por un valor muy bajo, que salga un mensaje de "No se han encontrado resultados"
-  
-  if (priceUser < 19.95) {
-    const noResults = document.createElement('h3')
-    noResults.className = 'no-results'
-    noResults.innerHTML = 'No se han encontrado resultados'
-    gamesContainer.appendChild(noResults)
-  }
- 
-  twoFilters.forEach((game) => {
-    const allFilters = document.createElement('div')
+  twoFiltersTogether.forEach((game) => {
+    const allFiltersTogether = document.createElement('div')
     allFilters.className = 'games-card'
     allFilters.innerHTML = `
       <img src="${game.image}" alt="${game.name}">
@@ -293,6 +278,7 @@ filtersContainer.addEventListener('change', function () {
       <p>Opiniones: ${game.reviews}</p>
       <p>Vendedor: ${game.seller}</p>
     `
-    gamesContainer.appendChild(allFilters)
+    gamesContainer.appendChild(allFiltersTogether)
   })
 })
+*/

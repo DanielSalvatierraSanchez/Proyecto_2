@@ -48,7 +48,7 @@ Criterios HTML y CSS
 
 Te comento una serie de modificaciones →
 
-✅1️⃣ BONUS: Realizar los dos filtros de manera conjunta. Esto se conseguiría añadiendo las dos funciones dentro de la misma. Es decir, que al filtrar por select y por input, solo salgan artículos que cumplan con los dos filtros.
+1️⃣ BONUS: Realizar los dos filtros de manera conjunta. Esto se conseguiría añadiendo las dos funciones dentro de la misma. Es decir, que al filtrar por select y por input, solo salgan artículos que cumplan con los dos filtros.
 
 ✅2️⃣ En caso de que realice la búsqueda en el input numérico por un valor muy bajo, que salga un mensaje de "No se han encontrado resultados"
 
@@ -57,3 +57,15 @@ Te comento una serie de modificaciones →
 ✅4️⃣ Añadiría una opción en el select que sea TODAS.
 
 ✅5️⃣ En responsive, aumentaría el ancho de los filtros y reduciría algo la altura. Colocaría 2 artículos por fila, para que el scroll no sea tan largo.
+
+Revision 2:
+
+✅1️⃣ En el modo movil para que los botones no se queden tan pegados al borde, podrias probar a pasarlos debajo del los inputs.
+
+2️⃣ BONUS: Si quieres llevar tu app un poco más allá, ponte en el lado del consumidor, ¿no te gustaría que te recomendasen algun producto en caso que no encuentres lo que buscas? esto no es obligatorio pero si interesante 
+
+Lo de que funcionasen los dos a la vez era como bonus, no obligatorio, igual que lo que te he comentado de que apareciesen recomendados si no hay búsqueda, es una manera de entender como funciona realmente una app vista al usuario, darle siempre una opción y no causarle frustración de encontrar algo.
+
+✅3️⃣ Deja que funcionen por separado los filtros, si consigues que funcionen juntos de manera acumulativa guay, si no no pasa nada.
+
+✅4️⃣ Corrige lo del css en movil y creo que estaría perfec.
