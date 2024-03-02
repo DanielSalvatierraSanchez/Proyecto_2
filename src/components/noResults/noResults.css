@@ -1,0 +1,27 @@
+.no-results {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  width: max-content;
+  margin: 50% 30%;
+}
+
+@media (max-width: 810px) {
+  .no-results {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 590px) {
+  .no-results {
+    margin: 100px;
+    margin-top: 0px;
+  }
+}
+
+@media (max-width: 490px) {
+  .no-results {
+    margin-left: 120px;
+  }
+}

@@ -1,0 +1,58 @@
+/* ARTICLES PRODUCTS */
+.games-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--gr-background-secondary);
+  border-radius: var(--gr-border-xs);
+  margin: var(--gr-margin-m);
+  padding: var(--gr-padding-s);
+}
+
+.games-card:hover {
+  cursor: pointer;
+  background-color: var(--gr-background-hover);
+  box-shadow: 0px 0px 10px 5px var(--gr-background-shadow);
+  border-radius: var(--gr-border-s);
+  transform: scale(1.1);
+  transition: all 0.5s;
+}
+
+/* ARTICLES ELEMENTS */
+img {
+  max-width: 200px;
+  max-height: 250px;
+  border-radius: var(--gr-border-xs);
+  /* margin-left: 0px; */
+}
+
+h3 {
+  margin: var(--gr-margin-xs);
+  max-width: 165px;
+  text-align: center;
+  font-family: kanit;
+}
+
+p {
+  margin: var(--gr-margin-xs);
+}
+
+@media (max-width: 590px) {
+  .games-card {
+    margin: var(--gr-margin-s);
+  }
+}
+
+@media (max-width: 480px) {
+  .games-card {
+    margin: 10px;
+    padding: var(--gr-padding-xs);
+    max-width: 165px;
+  }
+}
+
+@media (max-width: 414px) {
+  .games-card {
+    max-width: 145px;
+  }
+}
